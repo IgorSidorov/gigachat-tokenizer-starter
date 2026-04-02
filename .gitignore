@@ -45,5 +45,6 @@ bin/
 .DS_Store
 
 .gigaide/
+.idea/
 *.log
 local.properties

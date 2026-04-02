@@ -1,0 +1,21 @@
+{
+  "properties": [
+    {
+      "name": "gigachat.tokenizer.model",
+      "type": "java.lang.String",
+      "description": "Модель токенизатора. Доступные значения: 'ultra', 'plus', 'pro' или 'custom'.",
+      "defaultValue": "ultra"
+    },
+    {
+      "name": "gigachat.tokenizer.custom-path",
+      "type": "java.lang.String",
+      "description": "Путь к кастомному файлу tokenizer.json. Обязателен, если model='custom'. Поддерживает префиксы 'file:' или 'classpath:'."
+    },
+    {
+      "name": "gigachat.tokenizer.majority-threshold",
+      "type": "java.lang.Double",
+      "description": "Порог сохранения текста при обрезке (clampToTokens). Если обрезка по знаку препинания удаляет больше этого процента текста, строка будет обрезана жестко.",
+      "defaultValue": 0.7
+    }
+  ]
+}

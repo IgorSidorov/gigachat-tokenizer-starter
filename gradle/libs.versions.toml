@@ -1,0 +1,23 @@
+[versions]
+kotlin = "2.2.0"
+spring-boot = "4.0.3"
+djl-tokenizers = "0.36.0"
+kover = "0.9.2"
+mockk = "1.13.13"
+dokka = "2.2.0"
+
+[libraries]
+spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring-boot" }
+spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+djl-tokenizers = { module = "ai.djl.huggingface:tokenizers", version.ref = "djl-tokenizers" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin"}
+spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+
+[plugins]
+spring = { id = "org.springframework.boot", version.ref = "spring-boot" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+maven-publish = { id = "maven-publish" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
