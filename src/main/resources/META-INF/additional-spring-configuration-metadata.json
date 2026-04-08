@@ -3,7 +3,7 @@
     {
       "name": "gigachat.tokenizer.model",
       "type": "java.lang.String",
-      "description": "Модель токенизатора. Доступные значения: 'ultra', 'plus', 'pro' или 'custom'.",
+      "description": "Модель токенизатора. Доступные значения: 'ultra' или 'custom'.",
       "defaultValue": "ultra"
     },
     {

@@ -1,5 +1,4 @@
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
-import org.gradle.kotlin.dsl.invoke
 
 plugins {
     alias(libs.plugins.spring)
@@ -56,26 +55,20 @@ kotlin {
 }
 
 kover.reports {
-
-    filters {
-//        excludes.classes()
-    }
-
     total.html {
         onCheck.set(true)
     }
 
     verify {
         rule {
-//            disabled = false
-            disabled = true
+            disabled = false
             bound {
                 coverageUnits = CoverageUnit.LINE
                 minValue = 80
             }
             bound {
                 coverageUnits = CoverageUnit.BRANCH
-                minValue = 60
+                minValue = 50
             }
         }
     }
@@ -87,7 +80,6 @@ val dokkaJavadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-// 2. Создаем Jar с исходниками (обязательно для публикации)
 val sourcesJar by tasks.registering(Jar::class) {
     from(sourceSets.main.get().allSource)
     archiveClassifier.set("sources")
@@ -100,6 +92,33 @@ publishing {
             artifact(dokkaJavadocJar)
             artifact(sourcesJar)
             artifactId = "gigachat-tokenizer-starter"
+
+            pom {
+                name.set("GigaChat Tokenizer Starter")
+                description.set("Spring Boot Starter for GigaChat tokenization (Ultra/Max models)")
+                url.set("https://github.com/IgorSidorov/gigachat-tokenizer-starter")
+
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("IgorSidorov")
+                        name.set("Igor Sidorov")
+                        email.set("igoryakha@list.ru")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://github.com/IgorSidorov/gigachat-tokenizer-starter.git")
+                    developerConnection.set("scm:git:ssh://github.com:IgorSidorov/gigachat-tokenizer-starter.git")
+                    url.set("https://github.com/IgorSidorov/gigachat-tokenizer-starter")
+                }
+            }
         }
     }
 }

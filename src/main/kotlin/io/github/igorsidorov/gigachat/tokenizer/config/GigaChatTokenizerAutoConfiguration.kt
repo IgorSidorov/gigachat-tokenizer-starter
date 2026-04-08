@@ -1,7 +1,7 @@
-package io.github.isidev.gigachat.tokenizer.config
+package io.github.igorsidorov.gigachat.tokenizer.config
 
-import io.github.isidev.gigachat.tokenizer.service.GigaChatTokenEstimatorService
-import io.github.isidev.gigachat.tokenizer.service.TokenEstimatorService
+import io.github.igorsidorov.gigachat.tokenizer.service.GigaChatTokenEstimatorService
+import io.github.igorsidorov.gigachat.tokenizer.service.TokenEstimatorService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.AutoConfiguration
@@ -14,9 +14,10 @@ import org.springframework.core.io.ResourceLoader
 @AutoConfiguration
 @EnableConfigurationProperties(GigaChatTokenizerProperties::class)
 class GigaChatTokenizerAutoConfiguration {
+    private val log = logger()
 
     init {
-        println("!!! GigaChat AutoConfiguration Loaded !!!")
+        log.info("GigaChat Tokenizer AutoConfiguration loaded successfully")
     }
 
     @Bean

@@ -1,8 +1,8 @@
-package io.github.isidev.gigachat.tokenizer.service
+package io.github.igorsidorov.gigachat.tokenizer.service
 
 import ai.djl.huggingface.tokenizers.HuggingFaceTokenizer
-import io.github.isidev.gigachat.tokenizer.config.GigaChatTokenizerProperties
-import io.github.isidev.gigachat.tokenizer.config.logger
+import io.github.igorsidorov.gigachat.tokenizer.config.GigaChatTokenizerProperties
+import io.github.igorsidorov.gigachat.tokenizer.config.logger
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
 import org.springframework.core.io.ResourceLoader
@@ -140,17 +140,20 @@ class GigaChatTokenEstimatorService(
 
     override fun clampToTokens(text: String, maxTokens: Int): String {
         val encoding = tokenizer.encode(text)
-        if (encoding.ids.size <= maxTokens) return text
-
+        val ids = encoding.ids
+        if (ids.size <= maxTokens) return text
         val spans = encoding.charTokenSpans
-        val lastCharIndex = if (maxTokens > 0 && maxTokens <= spans.size) {
-            spans[maxTokens - 1].end
-        } else 0
-
-        if (lastCharIndex <= 0) return ""
-
-        return finalizeTruncation(text.substring(0, lastCharIndex))
+        if (spans.isEmpty()) return ""
+        val targetIdx = maxTokens - 1
+        val lastCharIndex = if (targetIdx in spans.indices) {
+            spans[targetIdx]?.end ?: 0
+        } else {
+            spans.lastOrNull()?.end ?: 0
+        }
+        return if (lastCharIndex <= 0) ""
+        else finalizeTruncation(text.substring(0, lastCharIndex))
     }
+
 
     private fun finalizeTruncation(rawTruncated: String): String {
         val lastSentenceEnd = rawTruncated.lastIndexOfAny(listOf(DOT, EXCLAMATION, QUESTION))
