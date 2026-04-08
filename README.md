@@ -1,10 +1,6 @@
 # GigaChat Tokenizer Spring Boot Starter
 
-[![Java Version](https://shields.io)](https://oracle.com)
-[![Kotlin](https://shields.io)](https://kotlinlang.org)
-[![License](https://shields.io)](https://opensource.org)
-
-Библиотека для точного подсчета токенов и управления контекстным окном в проектах, использующих модели GigaChat 
+Это kotlin/java библиотека для точного подсчета токенов и управления контекстным окном в проектах, использующих модели GigaChat 
 (разработанная компанией Сбер).
 Основана на оригинальных конфигурациях токенизаторов GigaChat Ultra (модели v3, v3.1)
 движок HuggingFace Tokenizers.
