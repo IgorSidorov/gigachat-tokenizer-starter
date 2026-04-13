@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.kover)
     alias(libs.plugins.maven.publish)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.nexus.publish)
+    signing
 }
 
 repositories {
@@ -119,6 +121,24 @@ publishing {
                     url.set("https://github.com/IgorSidorov/gigachat-tokenizer-starter")
                 }
             }
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications["maven"])
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            // Для нового Central Portal используем современный URL
+            nexusUrl.set(uri("https://sonatype.org"))
+            snapshotRepositoryUrl.set(uri("https://sonatype.org"))
+
+            // Эти переменные подтянутся из вашего глобального ~/.gradle/gradle.properties
+            username.set(property("ossrhUsername").toString())
+            password.set(property("ossrhPassword").toString())
         }
     }
 }

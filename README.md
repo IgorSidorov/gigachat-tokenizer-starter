@@ -17,18 +17,23 @@
 * Spring Boot Auto-configuration: Подключается одной зависимостью, настройки через application.yaml.
 
 🚀 **Быстрый старт**
+
 **1. Добавьте зависимость**
 В ваш build.gradle.kts:
 
-```
-    repositories {
-      mavenLocal()
-    }
-        
+``` 
     dependencies {
       implementation("io.github.igorsidorov:gigachat-tokenizer-starter:0.1.0")
     }
    ```
+Или в pom.xml:
+```
+    <dependency>
+        <groupId>io.github.igorsidorov</groupId>
+        <artifactId>gigachat-tokenizer-starter</artifactId>
+        <version>0.1.0</version>
+    </dependency>
+```
 
 **2. Использование в сервисе**
 ```
